@@ -1,0 +1,21 @@
+{
+  "name": "api-rest-final-project",
+  "version": "1.0.0",
+  "description": "Final project creating an API rest with Node.js, Express, Mongoose(mongoDB)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Angelslebron/API-Rest-Final-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Angelslebron/API-Rest-Final-Project/issues"
+  },
+  "homepage": "https://github.com/Angelslebron/API-Rest-Final-Project#readme"
+}
