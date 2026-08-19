@@ -30,9 +30,8 @@ const btnConfirmDelete = document.getElementById('btn-confirm-delete');
 let contactToDeleteId = null;
 let searchDebounceTimeout = null;
 
-// ==========================================
 // 1. CARGA Y RENDERIZADO DE CONTACTOS (GET)
-// ==========================================
+
 
 async function fetchContacts(search = '') {
   showLoading(true);
@@ -105,9 +104,9 @@ function renderContacts(contacts) {
   });
 }
 
-// ==========================================
+
 // 2. CREAR Y ACTUALIZAR (POST & PUT)
-// ==========================================
+
 
 contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -166,9 +165,9 @@ contactForm.addEventListener('submit', async (e) => {
   }
 });
 
-// ==========================================
+
 // 3. ELIMINAR CONTACTO (DELETE)
-// ==========================================
+
 
 btnConfirmDelete.addEventListener('click', async () => {
   if (!contactToDeleteId) return;
@@ -190,15 +189,15 @@ btnConfirmDelete.addEventListener('click', async () => {
   }
 });
 
-// ==========================================
+
 // 4. BÚSQUEDA Y FILTRADO
-// ==========================================
+
 
 searchInput.addEventListener('input', (e) => {
   const query = e.target.value.trim();
   btnClearSearch.classList.toggle('hidden', query === '');
 
-  // Debounce para optimizar peticiones al escribir
+  
   clearTimeout(searchDebounceTimeout);
   searchDebounceTimeout = setTimeout(() => {
     fetchContacts(query);
@@ -211,9 +210,9 @@ btnClearSearch.addEventListener('click', () => {
   fetchContacts();
 });
 
-// ==========================================
+
 // 5. MANEJO DE MODALES Y UI
-// ==========================================
+
 
 function openCreateModal() {
   contactForm.reset();
@@ -268,9 +267,9 @@ btnCloseModal.addEventListener('click', closeContactModal);
 btnCancel.addEventListener('click', closeContactModal);
 btnCancelDelete.addEventListener('click', closeDeleteModal);
 
-// ==========================================
-// UTILIDADES (Alertas, Spinners, XSS Safe)
-// ==========================================
+
+// UTILIDADES
+
 
 function showLoading(show) {
   loadingSpinner.classList.toggle('hidden', !show);
@@ -311,5 +310,5 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
-// Carga inicial
+
 document.addEventListener('DOMContentLoaded', () => fetchContacts());
