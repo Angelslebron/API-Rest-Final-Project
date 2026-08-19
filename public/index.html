@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Directorio de Contactos</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="main-header">
+      <div class="header-title">
+        <h1><i class="fa-solid fa-address-book"></i> Directorio de Contactos</h1>
+        <p>Gestiona tu libreta de contactos de forma rápida y sencilla</p>
+      </div>
+      <button id="btn-open-create" class="btn btn-primary">
+        <i class="fa-solid fa-user-plus"></i> Nuevo Contacto
+      </button>
+    </header>
+
+    <!-- Contenedor de Alertas / Mensajes de Estado -->
+    <div id="alert-container" class="alert-container"></div>
+
+    <!-- Barra de Búsqueda y Estadísticas -->
+    <section class="controls-section">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Buscar por nombre, correo, empresa o teléfono..."
+          autocomplete="off"
+        >
+        <button id="btn-clear-search" class="btn-clear hidden" title="Limpiar búsqueda">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="contacts-count">
+        Total: <span id="total-count">0</span> contactos
+      </div>
+    </section>
+
+    <!-- Estado de Carga -->
+    <div id="loading-spinner" class="loading-container hidden">
+      <div class="spinner"></div>
+      <p>Cargando contactos...</p>
+    </div>
+
+    <!-- Grid / Lista de Contactos -->
+    <main id="contacts-grid" class="contacts-grid"></main>
+
+    <!-- Estado Vacío -->
+    <div id="empty-state" class="empty-state hidden">
+      <i class="fa-regular fa-folder-open empty-icon"></i>
+      <h3>No se encontraron contactos</h3>
+      <p>Agrega un nuevo contacto o prueba con otro término de búsqueda.</p>
+    </div>
+  </div>
+
+  <!-- Modal para Crear / Editar Contacto -->
+  <div id="contact-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="modal-title">Nuevo Contacto</h2>
+        <button id="btn-close-modal" class="btn-icon" title="Cerrar">&times;</button>
+      </div>
+      <form id="contact-form" novalidate>
+        <input type="hidden" id="contact-id">
+
+        <div class="form-group">
+          <label for="nombre">Nombre Completo <span class="required">*</span></label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez">
+          <span class="error-msg" id="error-nombre"></span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="telefono">Teléfono <span class="required">*</span></label>
+            <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 809-555-0199">
+            <span class="error-msg" id="error-telefono"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="correo">Correo Electrónico <span class="required">*</span></label>
+            <input type="email" id="correo" name="correo" required placeholder="Ej: juan@ejemplo.com">
+            <span class="error-msg" id="error-correo"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="empresa">Empresa / Organización</label>
+          <input type="text" id="empresa" name="empresa" placeholder="Ej: Acme Corp">
+        </div>
+
+        <div class="form-group">
+          <label for="notas">Notas Adicionales</label>
+          <textarea id="notas" name="notas" rows="3" placeholder="Información relevante o comentarios..."></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="btn-cancel" class="btn btn-secondary">Cancelar</button>
+          <button type="submit" id="btn-submit" class="btn btn-primary">
+            <span id="btn-submit-text">Guardar Contacto</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal de Confirmación para Eliminar -->
+  <div id="delete-modal" class="modal-overlay hidden">
+    <div class="modal-card modal-confirm">
+      <div class="confirm-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+      <h2>¿Eliminar este contacto?</h2>
+      <p id="delete-contact-name">Esta acción no se puede deshacer.</p>
+      <div class="modal-footer">
+        <button id="btn-cancel-delete" class="btn btn-secondary">Cancelar</button>
+        <button id="btn-confirm-delete" class="btn btn-danger">Sí, eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
